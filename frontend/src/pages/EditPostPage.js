@@ -50,7 +50,7 @@ const EditPostPage = () => {
         setBody(res.data.body);
         setPreview(
           res.data.image
-            ? `http://localhost:5000/uploads/${res.data.image}`
+            ? `${process.env.REACT_APP_BACKEND_URL}/uploads/${res.data.image}`
             : ""
         );
       } catch {

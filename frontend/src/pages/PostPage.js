@@ -129,7 +129,7 @@ const PostPage = () => {
 
         {post.image && (
           <img 
-            src={`http://localhost:5000/uploads/${post.image}`} 
+            src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${post.image}`}
             alt="post" 
             style={{ width: "100%", borderRadius: "15px", margin: "15px 0" }} 
           />
