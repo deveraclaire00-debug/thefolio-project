@@ -340,7 +340,7 @@ const EditPostPage = () => {
               />
             </div>
 
-            {preview && (
+            {image && preview && (
               <div style={theme.previewBox}>
                 <img src={preview} alt="preview" style={theme.preview} />
               </div>

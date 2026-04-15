@@ -288,8 +288,7 @@ const CreatePostPage = () => {
               }}
             />
           </div>
-
-          {user?.role === 'admin' && (
+          
             <div style={styles.inputGroup}>
               <label style={styles.label}>Featured Image</label>
               <input
@@ -306,7 +305,7 @@ const CreatePostPage = () => {
                 </div>
               </label>
             </div>
-          )}
+          
 
           <div style={styles.buttonRow}>
             <button
