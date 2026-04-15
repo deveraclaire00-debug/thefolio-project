@@ -1,0 +1,1844 @@
+/* ==========================================
+   1. GENERAL PAGE STYLES
+   - Sets the global color palette, typography, and layout defaults.
+   ========================================== */
+body {
+    background-color: #FAE8ED; 
+    margin: 0;               
+    font-family: Georgia, sans-serif;
+    color: rgb(12, 75, 52);   
+}
+
+/* Common Content Wrapper: Centers and constrains the width of main content */
+.content-wrapper {
+    max-width: 95%;
+    margin: 0 auto;
+    padding: 40px 4%;
+}
+
+/* ==========================================
+   2. HEADER & NAVIGATION SECTION
+   - Determines the layout and styling of the main title and site navigation.
+   ========================================== */
+.title {
+    text-align: center;        
+    font-size: 40px;           
+    padding: 15px 0;           
+    font-weight: bold;         
+}
+
+/* Menu Layout: Horizontal flexbox for navigation links */
+.menu {
+    display: flex;
+    align-items: center; /* Ensures vertical alignment is perfect */
+    justify-content: center;
+    gap: 50px;
+    background-color: #f7c6d9;
+    padding: 20px 4%; /* Added 4% padding to the sides */
+}
+
+/* Link Styling: Defines the appearance of navigation items */
+.menu a {
+    text-decoration: none;
+    font-size: 30px;
+    font-weight: bold;
+    color: rgb(12, 75, 52);
+    /* FIX: Add this line to reserve space for the border */
+    border-bottom: 2px solid transparent; 
+    padding-bottom: 5px;
+    transition: all 0.3s ease;
+}
+
+/* Active Link State: Highlights the current page the user is on */
+.menu .active { 
+    color: rgb(241, 125, 194);
+    border-bottom: 2px solid rgb(12, 75, 52);
+    padding-bottom: 5px;
+}
+
+/* Hover State: Provides visual feedback when hovering over links */
+.menu a:hover {
+    color: rgb(241, 125, 194);  
+}
+
+/* ==========================================
+   3. DARK MODE TOGGLE BUTTON
+   - Styles for the sliding theme switch.
+   ========================================== */
+.theme-btn {
+    background-color: rgb(12, 75, 52);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    width: 75px;          
+    height: 34px; /* Slightly reduced height for better proportions */
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Evenly space the moon and sun */
+    padding: 0 14px; /* Room for icons on both sides */
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    margin-left: 50px;
+    overflow: hidden;
+}
+
+/* The Sliding Knob: The circular element that moves when toggled */
+.theme-btn::before {
+    content: '';
+    position: absolute;
+    width: 26px; /* Sized to fit inside the height */
+    height: 26px;
+    background-color: #f7c6d9;
+    border-radius: 50%;
+    left: 4px; /* Initial position */
+    top: 50%;
+    transform: translateY(-50%); /* Perfectly centers vertically */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 2;
+}
+
+/* Style the Moon icon inside the button */
+.theme-icon {
+    font-size: 16px;
+    z-index: 1; /* Keep icons behind the moving knob */
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none; /* Prevents icons from interfering with clicks */
+}
+
+/* ==========================================
+   4. HERO SECTION (Main Content)
+   - Manages the side-by-side layout of the profile image and intro text.
+   ========================================== */
+.hero {
+    display: flex;               
+    align-items: center;        
+    justify-content: space-between; 
+    gap: 40px; /* Increased gap for better breathing room */
+    padding: 0px 4%; /* Changed 15px to 0px to pull content up */
+    max-width: 95%;             
+    margin: 0 auto;           
+}
+
+/* Profile Image Styling: Handles the circular avatar and zoom animations */
+.image-container {
+    flex-shrink: 0; 
+    margin-left: 0;          
+}
+
+.image-container img {
+    /* Changed fixed 650px to a responsive max-width */
+    width: 100%;
+    max-width: 500px; 
+    height: auto;               
+    border-radius: 50%;         
+}
+
+/* Hover Interaction: Adds smooth scaling to the profile image */
+.image-container img {
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.image-container img:hover {
+    transform: scale(1.03); 
+    box-shadow: 0 10px 25px rgba(12, 75, 52, 0.2);
+}
+
+.dark-img {
+    display: none;
+}
+
+/* Introduction Text Styling: Typography for the bio section */
+.intro {
+    flex: 1;                  
+    max-width: 700px; /* Slightly reduced to ensure it fits next to the image */
+    text-align: left;           
+    margin-right: 0;           
+    padding-top: 0; /* Removed padding to pull text up */
+}
+
+.intro h2 {
+    font-size: 54px;            
+    margin: 0 0 10px 0;        
+    line-height: 1.1;          
+}
+
+/* Heading Interaction: Changes letter spacing and color on hover */
+.intro h2 {
+    transition: letter-spacing 0.4s ease, color 0.4s ease;
+    cursor: default;
+}
+
+.intro h2:hover {
+    letter-spacing: 2px;
+    color: rgb(241, 125, 194); 
+}
+
+.intro p {
+    font-size: 18px;            
+    line-height: 1.5;          
+    margin-bottom: 20px;        
+    width: 100%;              
+    text-align: justify;
+}
+
+/* ==========================================
+   5. HIGHLIGHTS & DECORATIVE ELEMENTS
+   - Stylized list boxes and artistic quote formatting.
+   ========================================== */
+.highlights {
+    width: 100%;               
+    box-sizing: border-box;    
+    border: 1.5px solid rgb(12, 75, 52); 
+    padding: 20px;            
+    border-radius: 12px;     
+}
+
+.highlights h3 {
+    margin-top: 0;              
+}
+
+.highlights ol {
+    padding-left: 18px;        
+}
+
+/* List Item Animation: Slides the text right on hover */
+.highlights li {
+    transition: all 0.3s ease;
+    list-style-position: inside;
+}
+
+.highlights li:hover {
+    padding-left: 10px;
+    color: rgb(241, 125, 194);
+    font-weight: bold;
+}
+
+/* Highlight Box Shadow: Adds an artistic offset shadow on hover */
+.highlights {
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.highlights:hover {
+    border-color: rgb(241, 125, 194);
+    box-shadow: 10px 10px 0px rgba(241, 125, 194, 0.2); 
+}
+
+/* Quote Section Styling: Blockquote-style formatting for inspirational text */
+.art-quote {
+    margin: 30px 0 10px 0;
+    padding: 15px 25px;
+    border-left: 5px solid rgb(12, 75, 52); 
+    background-color: rgba(255, 255, 255, 0.3); 
+    border-radius: 0 10px 10px 0; 
+}
+
+.art-quote p {
+    font-size: 22px;
+    font-style: italic;
+    margin: 0;
+    color: rgb(12, 75, 52);
+    line-height: 1.2;
+}
+
+.art-quote cite {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(12, 75, 52, 0.7);
+}
+
+/* ==========================================
+   6. HOME CARDS SECTION (Bottom)
+   - Layout for the category or feature cards at the bottom of the home page.
+   ========================================== */
+.cards {
+    display: flex;             
+    justify-content: center;   
+    gap: 20px;                 
+    padding: 18px 40px 35px 40px; 
+    flex-wrap: nowrap;          
+    max-width: 1400px;         
+    margin: 0 auto;           
+}
+
+/* Individual Card Styling: Defines border, padding, and flex behavior */
+.card {
+    border: 1.5px solid rgb(12, 75, 52); 
+    border-radius: 12px;      
+    padding: 20px;            
+    flex: 1;                   
+    min-width: 250px;          
+    background-color: transparent; 
+    text-align: left;  
+    transition: transform 0.2s ease;           
+}
+
+.card h3 {
+    margin-top: 0;              
+    font-size: 20px;          
+}
+
+/* Card Interaction: Lifts and changes color on hover */
+.card:hover {
+    transform: translateY(-10px);
+    background-color: #f7c6d9;    
+    box-shadow: 0 12px 20px rgba(12, 75, 52, 0.15);
+    border-color: rgb(241, 125, 194); 
+}
+
+
+/* =============================
+   POSTS SECTION (CUTE LAYOUT)
+============================= */
+
+.posts-section {
+  margin-top: 40px;
+  padding: 20px;
+}
+
+.posts-section h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 28px;
+}
+
+/* GRID LAYOUT */
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+/* POST CARD */
+.post-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 15px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* HOVER EFFECT */
+.post-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* IMAGE */
+.post-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+/* TITLE */
+.post-card h3 {
+  font-size: 18px;
+  margin: 10px 0 5px;
+}
+
+.post-card h3 a {
+  text-decoration: none;
+  color: #333;
+}
+
+.post-card h3 a:hover {
+  color: #ff7aa2; /* cute pink hover */
+}
+
+/* BODY TEXT */
+.post-card p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+/* META INFO */
+.post-card small {
+  font-size: 12px;
+  color: #888;
+}
+
+/* =============================
+   DARK MODE SUPPORT
+============================= */
+
+.dark-mode .post-card {
+  background: #1e1e1e;
+  color: #eee;
+}
+
+.dark-mode .post-card h3 a {
+  color: #fff;
+}
+
+.dark-mode .post-card p {
+  color: #ccc;
+}
+
+.dark-mode .post-card small {
+  color: #aaa;
+}
+
+/* =============================
+   LOGOUT BUTTON ONLY
+============================= */
+
+.menu button:not(.theme-btn) {
+  background: linear-gradient(135deg, #ff7ab8, #ff4d6d);
+  border: none;
+  color: #fff;
+  padding: 8px 16px;
+  margin-left: 10px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Hover */
+.menu button:not(.theme-btn):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(255, 77, 109, 0.4);
+}
+
+/* Click */
+.menu button:not(.theme-btn):active {
+  transform: scale(0.95);
+}
+
+/* =============================
+   DARK MODE
+============================= */
+
+.dark-mode .menu button:not(.theme-btn) {
+  background: linear-gradient(135deg, #be3c8a, #eba1cb);
+}
+
+/* =========================
+   POST ACTION BUTTONS FIX
+========================= */
+
+.post-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+/* base button style */
+.action-btn {
+  padding: 8px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* VIEW BUTTON */
+.view-btn {
+  background: #f7b4d0;
+  color: white;
+}
+
+.view-btn:hover {
+  background: #b8358c;
+  transform: translateY(-1px);
+}
+
+/* EDIT BUTTON */
+.edit-btn {
+  background: #1a4120;
+  color: rgb(254, 254, 254);
+}
+
+.edit-btn:hover {
+  background: #f092be;
+  transform: translateY(-1px);
+}
+/* ==========================================
+   7. ABOUT PAGE STYLES
+   - Styling specific to the About Claire/Biography section.
+   ========================================== */
+.about-section h2 {
+    font-size: 36px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+
+.about-section h2 {
+    transition: letter-spacing 0.4s ease, color 0.4s ease;
+    cursor: default;
+}
+
+.about-section h2:hover {
+    letter-spacing: 2px;
+    color: rgb(241, 125, 194);
+}
+
+/* ==========================================
+   ABOUT GALLERY STYLES
+   - Complex interactions for the art gallery, including blur and focus effects.
+   ========================================== */
+
+/* 1. LAYOUT: Arranges items in a row and centers them */
+.card-art {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 25px;
+    justify-content: center;
+    padding: 30px 0;
+}
+
+/* 2. GALLERY ITEM: The container for each image */
+.gallery-grid {
+    width: 225px;
+    height: 400px;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.5s ease, filter 0.5s ease;
+    cursor: pointer;
+}
+
+/* 3. IMAGE STYLING: Ensures images fill the box without stretching */
+.gallery-grid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* 4. THE BLUR FIX: Logic to blur inactive gallery items when one is hovered */
+.card-art:hover .gallery-grid {
+    filter: blur(5px);
+    transform: scale(0.95);
+    opacity: 0.8;
+}
+
+/* Active Hover State: Removes blur and scales the focused image */
+.card-art .gallery-grid:hover {
+    filter: blur(0);
+    transform: scale(1.1);
+    opacity: 1;
+    z-index: 10;
+}
+
+/* 5. OVERLAY & TEXT: Background gradient for info labels */
+.gallery-grid .layer {
+    background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0));
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 75%;
+    opacity: 0;
+    transition: 0.3s ease;
+}
+
+/* Info Text Styling: Positioning for hidden gallery text */
+.gallery-grid .info {
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    color: #ffffff;
+    opacity: 0;
+    transition: 0.5s ease;
+}
+
+.gallery-grid .info h2 {
+    color: #ffffff;
+    font-size: 24px;
+    margin: 0;
+}
+
+.gallery-grid .info p {
+    color: #ffffff;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+/* Trigger: Reveals information when gallery item is hovered */
+.gallery-grid:hover .layer,
+.gallery-grid:hover .info {
+    opacity: 1;
+    bottom: 0;
+}
+
+.timeline-box {
+    margin: 40px 0;
+    width: 100%;
+}
+
+/* ==========================================
+   8. CONTACT PAGE STYLES
+   - Styles the form, contact details, and resource section.
+   ========================================== */
+.contact-hero {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 50px;
+    align-items: stretch;
+    font-size: 25px;
+    text-align: justify;
+}
+
+/* Form Container: Layout for the input side of the contact section */
+.contact-form-container {
+    flex: 2;
+    background-color: transparent;
+}
+
+.contact-form-container h2 {
+    display: inline-block;
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+.contact-form-container h2:hover {
+    color: rgb(241, 125, 194);
+    transform: scale(1.05);
+    text-shadow: 2px 2px 0px rgba(12, 75, 52, 0.1);
+}
+
+/* Contact Info Card: Pink sidebar containing address or details */
+.contact-info-card {
+    flex: 1;
+    background-color: #f7c6d9; 
+    padding: 10px; 
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-info-card h3{
+    font-size: 30px;
+    padding-top: 20px;
+}
+
+.contact-info-card p{
+    font-size: 18px;
+    text-align: justify;
+}
+
+.info-card-img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-bottom: 1.5px solid rgb(12, 75, 52);
+    border-radius: 20px;
+}
+
+/* When dark mode is active, apply a subtle filter to the image */
+body.dark-mode .info-card-img {
+    filter: brightness(0.8) contrast(1.1);
+    border: 2px solid #ff69b4; /* Optional: adds a glow effect */
+}
+
+.info-card-text h3 {
+    transition: color 0.3s ease, padding-left 0.3s ease;
+}
+
+.info-card-text h3:hover {
+    color: white; 
+    padding-left: 1px;
+}
+
+/* Form Element Styling: Standardizing inputs and textareas */
+.input-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.input-group input, 
+.input-group textarea {
+    padding: 10px;
+    border: 1.5px solid rgb(12, 75, 52);
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.5);
+    font-family: Georgia, serif;
+}
+
+.input-group textarea {
+    height: 120px;
+    resize: vertical;
+}
+
+/* Button Interaction: Hover effects for form submission */
+.submit-btn {
+    background-color: rgb(12, 75, 52);
+    color: #f7c6d9;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: rgb(241, 125, 194);
+    color: rgb(12, 75, 52);
+}
+
+/* Resources & Table Section: Manages information tables and resource links */
+.resources-section h2{
+    text-align: center; 
+    color: rgb(12, 75, 52);
+    font-size: 30px;
+}
+
+.resource-cards {
+    width: 100%;
+    border-spacing: 20px; 
+    border-collapse: separate;
+    margin-top: 20px;
+    table-layout: fixed;
+}
+
+/* Resource Card Logic: Styles table cells as interactive boxes */
+.res-card {
+    padding: 0; 
+    border-radius: 25px;
+    vertical-align: top;
+    text-align: center;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+/* Full Cell Click: Makes the anchor tag occupy the entire card area */
+.res-card a {
+    display: block;
+    padding: 30px; 
+    color: rgb(12, 75, 52);
+    text-decoration: none;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.res-card h4 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.res-card p {
+    color: rgb(12, 75, 52);
+    font-size: 15px;
+    line-height: 1.4;
+}
+
+/* Interaction: Visual shift for resource items on hover */
+.res-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(12, 75, 52, 0.2);
+}
+
+.res-card:hover h4 {
+    color: rgb(241, 125, 194);
+}
+
+/* Background Utility Classes: Used for varying section colors */
+.darkpink-bg { background-color: #f7aac7; }
+.pink-bg { background-color: #f7c6d9; }
+.white-bg { background-color: #ffffff; }
+
+/* Table Header Customization */
+.table-header {
+    background-color: rgb(12, 75, 52);
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    font-family: serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.res-desc {
+    padding: 20px;
+    border-radius: 25px;
+    vertical-align: middle;
+}
+
+/* Table Column Width Control: Manages proportions of the resource table */
+.art-resource-table th:first-child, 
+.art-resource-table td:first-child {
+    width: 30%; 
+}
+
+.art-resource-table th:last-child, 
+.art-resource-table td:last-child {
+    width: 70%; 
+    text-align: left; 
+}
+
+.res-row:hover {
+    transform: scale(1.01);
+    transition: all 0.3s ease;
+}
+
+/* Error message style: Validation feedback for the form */
+.error-msg {
+    color: #ff4d4d;
+    font-size: 0.8rem;
+    margin-top: 5px;
+    font-weight: 500;
+    animation: fadeIn 0.3s ease-in;
+}
+
+/* Status message base style */
+.status-message {
+    margin-top: 15px;
+    font-weight: bold;
+    min-height: 22px;
+    transition: all 0.4s ease;
+    text-align: center;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Success State (Light Mode - Pink/Green) */
+.status-message.success-visible {
+    opacity: 1;
+    color: #db478c; 
+}
+
+/* Success State (Dark Mode): Dynamic color adjustment for theme compatibility */
+body.dark .status-message.success-visible {
+    color: #f9f3f8; 
+    text-shadow: 0 0 10px rgba(191, 9, 109, 0.3);
+}
+
+.error-msg {
+    animation: shake 0.2s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* ==========================================
+   9. MAP LAYOUT 
+   - Styling for the embedded Google Map container.
+   ========================================== */
+.map-section {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.map-container {
+    width: 100%;
+    border-radius: 25px; 
+    overflow: hidden;    
+    border: 1.5px solid rgb(12, 75, 52); 
+    line-height: 0;     
+    transition: all 0.4s ease-in-out;
+    filter: grayscale(20%); 
+    box-shadow: 0 4px 10px rgba(12, 75, 52, 0.1);
+}
+
+/* Map Interaction: Restores color and zooms slightly on hover */
+.map-container:hover {
+    filter: grayscale(0%);
+    transform: scale(1.005);
+    border-color: rgb(241, 125, 194); 
+    box-shadow: 0 12px 24px rgba(12, 75, 52, 0.2);
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 450px;
+    border: 0;
+}
+
+.status-message {
+    position: relative;
+    z-index: 9999 !important;
+    display: block;
+    width: 98%;
+    text-align: center;
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 15px;
+    background: #f6d8df;
+    color: #240209;
+    box-shadow: 0 0 15px rgba(0,0,0,0.15);
+}
+
+/* ==========================================
+   10. EXTERNAL RESOURCE GRID
+   - 3-column layout for external art and portfolio links.
+   ========================================== */
+.external-links-section {
+    padding: 50px 10px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.external-links-section h2 {
+    text-align: center; 
+    color:  rgb(12, 75, 52); 
+}
+
+.art-links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+/* Link Card Styling: Visual properties for external link buttons */
+.art-resource-card {
+    background-color: #f7c6d9; 
+    padding: 40px 25px;
+    text-align: center;
+    border-radius: 25px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    
+    color: rgb(12, 75, 52) !important;
+    font-size: 1.1rem;
+    text-decoration: none !important;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Interaction: Visual shift for external link cards */
+.art-resource-card:hover {
+    background-color: #f17dc2;
+    color: #ffffff !important;
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(241, 125, 194, 0.4);
+}
+
+.art-resource-card span {
+    font-size: 0.85rem;
+    font-weight: 400;
+    margin-top: 10px;
+    opacity: 0.9;
+}
+
+/* ==========================================
+   REGISTER PAGE STYLES (FIXED VERSION)
+========================================== */
+
+/* Intro Section */
+.register-intro {
+    text-align: center;
+    margin-bottom: 50px;
+    padding: 0 15%;
+}
+
+.register-intro h2 {
+    color: rgb(12, 75, 52);
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.register-intro p {
+    color: rgb(194, 6, 113);
+    font-size: 1.1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Layout Container */
+.register-layout {
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+    align-items: stretch;
+    max-width: 1100px;
+    margin: auto;
+    padding: 0 20px;
+    flex-wrap: wrap;
+}
+
+/* Sidebar Signup Box */
+.why-signup-box {
+    flex: 1;
+    background-color: #f7c6d9;
+    padding: 40px;
+    border-radius: 20px;
+    color: rgb(12, 75, 52);
+    border: 1px solid rgba(12, 75, 52, 0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    position: relative;
+}
+
+.why-signup-box h3 {
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+
+/* Decorative Image */
+.decorative-img {
+    width: 100%;
+    height: 300px;
+    border-radius: 15px;
+    object-fit: cover;
+    margin: 20px 0;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Form Container */
+.form-container {
+    flex: 1.2;
+}
+
+/* Register Form */
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* --- UPDATED: Input & Select Fields --- */
+/* Target only text-based inputs and the select box */
+.register-form input:not([type="radio"]):not([type="checkbox"]),
+.register-form select {
+    width: 100%;
+    height: 55px; 
+    padding: 0 20px; 
+    border-radius: 50px;
+    border: 2px solid transparent;
+    background-color: #f7c6d9;
+    color: rgb(12, 75, 52);
+    font-size: 15px;
+    transition: all 0.3s ease;
+    box-sizing: border-box; 
+    appearance: none; 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+/* --- UPDATED: Radio & Checkbox Reset --- */
+/* This prevents the large pink circles seen in your screenshot */
+.register-form input[type="radio"],
+.register-form input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 5px;
+    cursor: pointer;
+    accent-color: rgb(12, 75, 52); /* Matches your theme color when selected */
+    vertical-align: middle;
+}
+
+/* Specific fix for the Select Arrow */
+.register-form select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgb(12, 75, 52)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 20px center;
+    background-size: 16px;
+}
+
+/* Input Hover + Focus */
+.register-form input:not([type="radio"]):not([type="checkbox"]):hover,
+.register-form select:hover {
+    background-color: #fbd5e3;
+    transform: translateY(-2px);
+}
+
+.register-form input:focus,
+.register-form select:focus {
+    outline: none;
+    background-color: white;
+    border-color: rgb(12, 75, 52);
+    box-shadow: 0 8px 20px rgba(12, 75, 52, 0.1);
+}
+
+/* Password Wrapper */
+.password-wrapper {
+    position: relative;
+}
+
+/* Eye Toggle Button */
+.toggle-icon {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: rgb(12, 75, 52);
+    z-index: 2;
+}
+
+/* Labels */
+.form-group label,
+.radio-box p {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: rgb(12, 75, 52);
+}
+
+/* Error Message */
+.error-message {
+    display: block;
+    font-size: 12px;
+    color: red;
+    margin-top: 4px;
+}
+
+/* Interest Box */
+.radio-box {
+    background-color: #f7c6d9;
+    padding: 15px;
+    border-radius: 20px;
+    margin-top: 10px;
+}
+
+/* Checkbox Group */
+.checkbox-group {
+    margin-top: 20px;
+}
+
+/* Submit Button */
+.register-submit {
+    background-color: rgb(12, 75, 52);
+    color: #f7c6d9;
+    padding: 16px 60px;
+    border-radius: 50px;
+    border: none;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.4s ease;
+    width: fit-content;
+    align-self: flex-end;
+    box-shadow: 0 4px 15px rgba(12, 75, 52, 0.2);
+}
+
+.register-submit:hover {
+    background-color: rgb(241, 125, 194);
+    color: white;
+    transform: scale(1.05);
+}
+
+/* Benefits Grid */
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin: 25px 0;
+}
+
+.benefit-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: rgba(255,255,255,0.5);
+    gap: 10px;
+    padding: 25px 15px;
+    border-radius: 18px;
+    border: 1px solid rgba(12,75,52,0.05);
+    transition: 0.3s ease;
+}
+
+.benefit-item:hover {
+    transform: translateY(-5px);
+    background: #fdc8e4;
+    box-shadow: 0 10px 20px rgba(12,75,52,0.1);
+}
+
+.benefit-icon {
+    font-size: 24px;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* Responsive Design */
+@media (max-width:768px) {
+    .register-layout {
+        flex-direction: column;
+        gap: 30px;
+        padding: 0 15px;
+    }
+
+    .register-submit {
+        width: 100%;
+        align-self: center;
+    }
+
+    .decorative-img {
+        height: 220px;
+    }
+}
+
+/* ==========================================
+   12. FOOTER SECTION
+   - Styling for the site-wide footer area.
+   ========================================== */
+footer {
+    background-color: rgb(12, 75, 52); 
+    color: #f7c6d9;
+    padding: 40px 20px; 
+    text-align: center; 
+    font-weight: bold;
+}
+
+/* ==========================================
+   13. DARK MODE OVERRIDES
+   - Set of rules that apply when .dark-mode is added to the body tag.
+   ========================================== */
+body.dark-mode {
+    background-color: #560032; /* Deep dark background */
+    color: #E0E0E0;            /* Soft white text */
+}
+
+body.dark-mode .menu {
+    background-color: #1f1f1f;
+}
+
+body.dark-mode .menu a {
+    color: #E0E0E0;
+}
+
+body.dark-mode .menu a.active {
+    color: #f17dc2;
+    border-bottom-color: #f17dc2;
+}
+
+body.dark-mode .card, 
+body.dark-mode .highlights {
+    border-color: #333;
+    background-color: #1e1e1e;
+}
+
+body.dark-mode .card:hover {
+    background-color: #2c2c2c;
+    border-color: #f17dc2;
+}
+
+/* DARK MODE TOGGLE BUTTON OVERRIDES */
+body.dark-mode .theme-btn {
+    background-color: #f17dc2;
+}
+
+body.dark-mode .theme-btn::before {
+    /* Moves knob to the right side exactly */
+    left: calc(100% - 30px); 
+    background-color: #121212;
+}
+
+body.dark-mode .theme-icon {
+    /* Optional: Slight glow for the moon icon in dark mode */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Image Toggling: Logic for switching between light/dark profile pictures */
+body.dark-mode .light-img {
+    display: none;
+}
+
+body.dark-mode .dark-img {
+    display: block;
+    border: 8px solid #f7c6d9; 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 500px;
+    border-radius: 50%;
+}
+
+/* Dark Mode Nav Hover Effect */
+body.dark-mode .menu a:hover {
+    color: #f17dc2; /* The pink color from light mode hover */
+    text-shadow: 0 0 8px rgba(241, 125, 194, 0.4);
+    transition: all 0.3s ease;
+}
+
+body.dark-mode .menu a:not(.active):hover {
+    border-bottom: 2px solid rgba(241, 125, 194, 0.5);
+    padding-bottom: 5px;
+}
+
+/* About & Contact Page Dark Mode Adjustments */
+body.dark-mode .contact-info-card, 
+body.dark-mode .why-signup-box, 
+body.dark-mode .pink-bg {
+    background-color: #3d0024; /* Darker berry shade */
+    color: #ffffff;
+    border: 1px solid #f17dc2;
+}
+
+body.dark-mode .art-quote {
+    background-color: rgba(61, 0, 36, 0.6);
+    border-left-color: #f17dc2;
+}
+
+body.dark-mode .art-quote p,
+body.dark-mode .art-quote cite {
+    color: #f7c6d9;
+}
+
+body.dark-mode .info-card-text h3:hover {
+    color: #fafafa;
+}
+
+/* Register & Form Input Styling for Dark Mode */
+body.dark-mode .input-group label,
+body.dark-mode .dob-group label,
+body.dark-mode .radio-box p {
+    color: #f7c6d9;
+}
+
+body.dark-mode .register-form input[type="text"], 
+body.dark-mode .register-form input[type="date"],
+body.dark-mode .input-group input,
+body.dark-mode .input-group textarea,
+body.dark-mode .radio-box {
+    background-color: #f7c6d9;
+    color: #ffffff;
+    border: 1.5px solid #3d0024;
+}
+
+body.dark-mode .register-form input:focus,
+body.dark-mode .input-group input:focus {
+    background-color: #f7c6d9;
+    border-color: #f17dc2;
+    box-shadow: 0 0 10px rgba(241, 125, 194, 0.3);
+}
+
+body.dark-mode .register-submit,
+body.dark-mode .submit-btn {
+    background-color: #f17dc2;
+    color: #ffffff;
+}
+
+/* Resources & Table Dark Mode Logic */
+body.dark-mode .res-card, 
+body.dark-mode .res-desc {
+    background-color: #1e1e1e;
+    border-color: #3d0024;
+}
+
+body.dark-mode .res-card a,
+body.dark-mode .res-card p,
+body.dark-mode .resources-section h2 {
+    color: #E0E0E0;
+}
+
+body.dark-mode .art-resource-card {
+    background-color: #3d0024;
+    color: #ffffff !important;
+}
+
+body.dark-mode .darkpink-bg { background-color: #4d002d; }
+
+/* Brighter Container Colors for Dark Mode "Lift" */
+body.dark-mode .highlights,
+body.dark-mode .contact-form-container,
+body.dark-mode .card,
+body.dark-mode .radio-box {
+    background-color: #2d0a1f; 
+    border: 1px solid #f17dc2; /* Pink glow border */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .highlights h3,
+body.dark-mode .highlights li,
+body.dark-mode .intro p,
+body.dark-mode .contact-form-container h2 {
+    color: #ffdce8; /* Soft pink-white for readability */
+}
+
+body.dark-mode .register-intro h2 {
+    color: #ffffff;
+}
+
+/* Why Signup Box Dark Aesthetic Override */
+body.dark-mode .why-signup-box {
+    background-color: #3d0024; 
+    color: #ffffff;
+    border: 1px solid rgba(241, 125, 194, 0.2);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+body.dark-mode .why-signup-box::after {
+    border-color: #f17dc2; 
+}
+
+/* Benefit Items Dark Mode Logic */
+body.dark-mode .benefit-item {
+    background: rgba(255, 255, 255, 0.05); 
+    border: 1px solid rgba(241, 125, 194, 0.1);
+}
+
+body.dark-mode .benefit-item:hover {
+    background: #2c2c2c;
+    border-color: #f17dc2;
+}
+
+body.dark-mode .benefit-icon {
+    background: #2c2c2c;
+    color: #f17dc2;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+body.dark-mode .benefit-item h4 {
+    color: #f17dc2;
+}
+
+body.dark-mode .benefit-item p {
+    color: #cccccc;
+}
+
+/* Dark Mode Registration Labels */
+body.dark-mode .form-group label, 
+body.dark-mode .dob-group label,
+body.dark-mode .radio-box p,
+body.dark-mode .checkbox-group {
+    color: #f7c6d9;
+}
+
+/* Input Consistency for Dark Mode (Email/Password/Select) */
+body.dark-mode .register-form input[type="text"], 
+body.dark-mode .register-form input[type="email"],
+body.dark-mode .register-form input[type="password"],
+body.dark-mode .register-form input[type="date"],
+body.dark-mode .register-form select,
+body.dark-mode .radio-box {
+    background-color: #f7c6d9;
+    color: #343030;
+    border: 1.5px solid #3d0024;
+}
+
+/* Dark Mode Dropdown Arrow */
+body.dark-mode .register-form select {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f17dc2' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+}
+
+/* Dark Mode Submit Button Interactive State */
+body.dark-mode .register-submit:hover {
+    background-color: #ffffff;
+    color: #f17dc2;
+    box-shadow: 0 6px 20px rgba(241, 125, 194, 0.6);
+}
+
+body.dark-mode .menu {
+    background-color: #1a0512; 
+    border-bottom: 1px solid #3d0024;
+}
+
+body.dark-mode .menu a {
+    color: #f7c6d9;
+}
+
+body.dark-mode .menu a:hover {
+    color: #ffffff;
+    text-shadow: 0 0 10px #f17dc2;
+}
+
+/* Resource Table Dark Mode Aesthetics */
+body.dark-mode .table-header {
+    background-color: #2d0a1f; 
+    color: #f17dc2;            
+    border: 1px solid rgba(241, 125, 194, 0.4);
+    text-shadow: 0 0 5px rgba(241, 125, 194, 0.2);
+}
+
+body.dark-mode .res-row {
+    background-color: transparent;
+}
+
+body.dark-mode .res-card, 
+body.dark-mode .res-desc {
+    background-color: rgba(45, 10, 31, 0.4); 
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    color: #ffdce8; 
+}
+
+body.dark-mode .res-row:hover {
+    background-color: rgba(241, 125, 194, 0.05);
+    transform: scale(1.01);
+}
+
+body.dark-mode .res-card h4 {
+    color: #f17dc2;
+}
+
+body.dark-mode .res-card p {
+    color: #e0e0e0;
+}
+
+/* External Resource Link Overrides for Dark Mode */
+body.dark-mode .art-resource-card {
+    background-color: #1a0512;
+    border: 1px solid #f17dc2;
+    color: #f7c6d9 !important;
+}
+
+body.dark-mode .art-resource-card:hover {
+    background-color: #f17dc2;
+    color: #ffffff !important;
+    box-shadow: 0 0 20px rgba(241, 125, 194, 0.4);
+}
+
+body.dark-mode .art-resource-card span {
+    color: #ffdce8;
+}
+
+body.dark-mode .resources-section h2, 
+body.dark-mode .external-links-section h2 {
+    color: #f17dc2;
+    text-shadow: 0 0 10px rgba(241, 125, 194, 0.3);
+}
+
+body.dark-mode .table-header {
+    background-color: #3d0024; 
+    color: #f7c6d9;
+    border: 1px solid #f17dc2;
+    border-radius: 12px;
+}
+
+body.dark-mode .res-card, 
+body.dark-mode .res-desc,
+body.dark-mode .art-resource-card {
+    background-color: rgba(45, 10, 31, 0.6); 
+    border: 1px solid rgba(241, 125, 194, 0.2);
+    color: #ffdce8;
+}
+
+body.dark-mode .art-resource-card:hover {
+    background-color: #f17dc2;
+    color: #ffffff !important;
+    box-shadow: 0 0 20px rgba(241, 125, 194, 0.5);
+    border-color: #ffffff;
+}
+
+/* Dark Mode Footer Formatting */
+body.dark-mode footer {
+    background-color: #1a0512; 
+    color: #f7c6d9;
+    border-top: 2px solid #3d0024;
+    padding: 30px 20px;
+}
+
+body.dark-mode footer a {
+    color: #f17dc2;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+body.dark-mode footer a:hover {
+    color: #ffffff;
+    text-shadow: 0 0 8px #f17dc2;
+}
+
+/* ==========================================
+   14. MINI-GAME INVITE SECTION
+   - Styling for the memory game preview and call-to-action card.
+   ========================================== */
+.game-invite-container {
+    padding: 60px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.invite-card {
+    background: var(--card-bg, #ffffff); 
+    border-radius: 20px;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    max-width: 900px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border: 1px solid rgba(216, 72, 134, 0.2);
+}
+
+.invite-text { flex: 1; }
+
+.invite-text h2 {
+    font-size: 2rem;
+    color: #d22b95;
+    margin-bottom: 15px;
+}
+
+/* Mini-Grid Preview: Decorative layout representing the game board */
+.mini-game-preview {
+    display: grid;
+    grid-template-columns: repeat(2, 80px);
+    grid-template-rows: repeat(2, 80px);
+    gap: 10px;
+}
+
+.preview-card {
+    width: 80px;
+    height: 80px;
+    background: #e14aaf;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.preview-card.flipped {
+    background: #fff;
+    border: 2px solid #f387d8;
+    padding: 5px;
+}
+
+.preview-card.flipped img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.play-btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background: #b65989;
+    color: #fff !important;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.play-btn:hover {
+    background: #ad449d;
+    transform: scale(1.05);
+}
+
+body.dark-mode .invite-card {
+    background: #1e1e1e;
+    border-color: #fc86e6;
+}
+
+/* Animation Logic: CSS for the 3D flipping card effect */
+.animate-flip {
+    perspective: 1000px;
+    background: transparent !important; 
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    animation: autoFlip 4s infinite ease-in-out;
+}
+
+.delay .card-inner {
+    animation-delay: 2s;
+}
+
+@keyframes autoFlip {
+    0%, 20% { transform: rotateY(0deg); }
+    40%, 60% { transform: rotateY(180deg); }
+    80%, 100% { transform: rotateY(0deg); }
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-front {
+    background: #b659a2;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.card-back {
+    background: white;
+    border: 2px solid #b6599a;
+    transform: rotateY(180deg);
+}
+
+.card-back img {
+    width: 90%;
+    height: 90%;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.preview-card.flipped {
+    border: 2px solid #b6598e;
+    background: white;
+}
+
+/* ==========================================
+   15. RESPONSIVE DESIGN (Mobile Devices)
+   - Handles layout re-stacks for screens under 768px.
+   ========================================== */
+@media (max-width: 768px) {
+    html, body {
+        overflow-x: hidden; 
+        width: 100%;
+    }
+
+    .content-wrapper {
+        padding: 20px 4%; 
+    }
+
+    .title {
+        font-size: 26px; 
+        padding: 15px 10px;
+    }
+
+    .menu {
+        flex-direction: column;
+        gap: 10px;
+        padding: 20px 0;
+        align-items: center;
+    }
+
+    .menu a {
+        font-size: 22px;
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Hero Reflow: Stacks profile image on top of intro text */
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px 0;
+        gap: 30px;
+    }
+
+    .image-container img {
+        width: 250px; 
+        height: 250px;
+        object-fit: cover;
+    }
+
+    .intro h2 {
+        font-size: 32px;
+        text-align: center;
+    }
+
+    .intro p {
+        text-align: left; 
+        font-size: 16px;
+    }
+
+    /* Table Deconstruction: Converts HTML tables into mobile-friendly stacks */
+    .resource-cards, 
+    .resource-cards tbody, 
+    .resource-cards tr, 
+    .resource-cards td,
+    .art-resource-table,
+    .art-resource-table tr,
+    .art-resource-table td,
+    .art-resource-table th {
+        display: block !important;
+        width: 100% !important;
+        box-sizing: border-box;
+    }
+
+    .table-header, thead {
+        display: none;
+    }
+
+    .res-card, .res-desc {
+        margin-bottom: 15px;
+        border-radius: 15px;
+        border: 1.5px solid rgb(12, 75, 52); 
+    }
+
+    .resource-cards {
+        border-spacing: 0 15px; 
+    }
+
+    /* Content Cards & Gallery Stack */
+    .cards, .card-art {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .card, .gallery-grid {
+        width: 100%;
+        max-width: 350px; 
+        height: auto;
+    }
+
+    /* Registration Layout Reflow */
+    .contact-hero, .register-layout {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .contact-info-card, 
+    .contact-form-container, 
+    .why-signup-box, 
+    .form-container {
+        width: 100%;
+        flex: none;
+    }
+
+    .input-group input, 
+    .register-form input {
+        font-size: 16px;
+    }
+
+    .submit-btn, .register-submit {
+        width: 100%;
+        padding: 15px 0;
+        font-size: 18px;
+    }
+
+    .map-container iframe {
+        height: 250px;
+    }
+}
