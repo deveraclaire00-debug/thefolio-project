@@ -1,20 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import API, { BACKEND_URL } from "../api/axios";
+import API from "../api/axios";
+import { BASE_URL } from "../api/axios";
 
 const PostPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { user } = useAuth();
-
-  const getPostImageUrl = (image) => {
-    if (!image) return '';
-    if (image.startsWith('http://') || image.startsWith('https://')) return image;
-    const normalized = image.replace(/\\/g, '/');
-    const fileName = normalized.replace(/^\/?uploads\//, '');
-    return `${BACKEND_URL}/uploads/${fileName}`;
-  };
 
   const [post, setPost] = useState(null);
   const [comments, setComments] = useState([]);
@@ -39,7 +32,7 @@ const PostPage = () => {
         // ✅ SET LIKES
         setLikes(res.data.likes?.length || 0);
         if (user && res.data.likes) {
-          setLiked(res.data.likes.includes(user?._id));
+          setLiked(res.data.likes.includes(user._id));
         }
 
         const commentsRes = await API.get(`/comments/${id}`);
@@ -137,7 +130,7 @@ const PostPage = () => {
 
         {post.image && (
           <img 
-            src={getPostImageUrl(post.image)}
+            src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${post.image}`}
             alt="post" 
             style={{ width: "100%", borderRadius: "15px", margin: "15px 0" }} 
           />

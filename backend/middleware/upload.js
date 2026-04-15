@@ -2,9 +2,23 @@
 
 const multer = require('multer');
 const path = require('path');
+const fs = require('fs');
 
-// Use memory storage so file buffers can be uploaded into MongoDB Atlas GridFS
-const storage = multer.memoryStorage();
+// Create uploads/ folder if it does not exist
+if (!fs.existsSync('uploads')) {
+  fs.mkdirSync('uploads');
+}
+
+// Storage configuration
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => cb(null, 'uploads/'),
+  filename: (req, file, cb) => {
+    // Create a unique filename: timestamp + random number + original extension
+    const unique = Date.now() + '-' + Math.round(Math.random() * 1e9);
+    cb(null, unique + path.extname(file.originalname));
+    // Example result: 1719123456789-342156789.jpg
+  },
+});
 
 // Only allow image file types
 const fileFilter = (req, file, cb) => {

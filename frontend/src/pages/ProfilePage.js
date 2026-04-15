@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
-import API, { BACKEND_URL } from '../api/axios';
+import API from '../api/axios';
 
 const ProfilePage = () => {
   const { user, setUser } = useAuth();
@@ -86,19 +86,11 @@ const ProfilePage = () => {
     }
   };
 
-  const getImageUrl = (image) => {
-    if (!image) return '';
-    if (image.startsWith('http://') || image.startsWith('https://')) return image;
-    const normalized = image.replace(/\\/g, '/');
-    const fileName = normalized.replace(/^\/?uploads\//, '');
-    return `${BACKEND_URL}/uploads/${fileName}`;
-  };
-
-  const picSrc = preview
-    ? preview
-    : user?.profilePic
-    ? getImageUrl(user.profilePic)
-    : '/default-avatar.png';
+    const picSrc = preview
+      ? preview
+      : user?.profilePic
+      ? `${process.env.REACT_APP_BACKEND_URL}/uploads/${user.profilePic}`
+      : '/default-avatar.png';
 
   /* ================= STYLES (TheFolio Theme) ================= */
   const styles = {

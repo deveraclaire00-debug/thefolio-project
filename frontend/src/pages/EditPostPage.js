@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import API, { BACKEND_URL } from "../api/axios";
+import API from "../api/axios";
 
 const EditPostPage = () => {
   const { id } = useParams();
@@ -16,14 +16,6 @@ const EditPostPage = () => {
   const [saving, setSaving] = useState(false);
   const [fetching, setFetching] = useState(true);
   const [darkMode, setDarkMode] = useState(false);
-
-  const getPostImageUrl = (image) => {
-    if (!image) return '';
-    if (image.startsWith('http://') || image.startsWith('https://')) return image;
-    const normalized = image.replace(/\\/g, '/');
-    const fileName = normalized.replace(/^\/?uploads\//, '');
-    return `${BACKEND_URL}/uploads/${fileName}`;
-  };
 
   const [showSuccess, setShowSuccess] = useState(false);
 
@@ -57,7 +49,7 @@ const EditPostPage = () => {
         setBody(res.data.body);
         setPreview(
           res.data.image
-            ? getPostImageUrl(res.data.image)
+            ? `${process.env.REACT_APP_BACKEND_URL}/uploads/${res.data.image}`
             : ""
         );
       } catch {

@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema(
   role: { type: String, enum: ['member', 'admin'], default: 'member' },
   status: { type: String, enum: ['active', 'inactive'], default: 'active' },
   bio: { type: String, default: '' },
-  profilePic: { type: String, default: '' } // GridFS file ID or legacy image URL/path
+  profilePic: { type: String, default: '' } // stores filename e.g. 'abc123.jpg'
 },
 { timestamps: true } // adds createdAt and updatedAt automatically
 );
