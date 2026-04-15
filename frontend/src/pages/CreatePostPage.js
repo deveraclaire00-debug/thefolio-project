@@ -258,8 +258,10 @@ const CreatePostPage = () => {
 
         <form style={styles.form} onSubmit={handleSubmit}>
           <div style={styles.inputGroup}>
-            <label style={styles.label}>Title</label>
+            <label htmlFor="postTitle" style={styles.label}>Title</label>
             <input
+              id="postTitle"
+              name="title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="Enter the title"
@@ -274,8 +276,10 @@ const CreatePostPage = () => {
           </div>
 
           <div style={styles.inputGroup}>
-            <label style={styles.label}>Post</label>
+            <label htmlFor="postBody" style={styles.label}>Post</label>
             <textarea
+              id="postBody"
+              name="body"
               value={body}
               onChange={(e) => setBody(e.target.value)}
               placeholder="Type post here..."
@@ -296,6 +300,7 @@ const CreatePostPage = () => {
                 type="file"
                 accept="image/*"
                 id="fileUpload"
+                name="image"
                 style={{ display: 'none' }}
                 onChange={handleFileChange}
               />

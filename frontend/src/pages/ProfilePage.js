@@ -86,11 +86,11 @@ const ProfilePage = () => {
     }
   };
 
-    const picSrc = preview
-      ? preview
-      : user?.profilePic
-      ? `${process.env.REACT_APP_BACKEND_URL}/uploads/${user.profilePic}`
-      : '/default-avatar.png';
+  const picSrc = preview
+    ? preview
+    : user?.profilePic
+    ? `${process.env.REACT_APP_BACKEND_URL}/uploads/${user.profilePic}`
+    : '/default-avatar.png';
 
   /* ================= STYLES (TheFolio Theme) ================= */
   const styles = {
