@@ -289,7 +289,7 @@ const CreatePostPage = () => {
             />
           </div>
 
-          {user?.role === 'admin' && (
+          {user && (
             <div style={styles.inputGroup}>
               <label style={styles.label}>Featured Image</label>
               <input

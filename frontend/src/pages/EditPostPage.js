@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import API from "../api/axios";
+import { BASE_URL } from "../api/axios";
 
 const EditPostPage = () => {
   const { id } = useParams();

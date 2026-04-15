@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import API from "../api/axios";
+import { BASE_URL } from "../api/axios";
 
 const PostPage = () => {
   const { id } = useParams();

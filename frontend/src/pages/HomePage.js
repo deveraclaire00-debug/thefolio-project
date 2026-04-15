@@ -6,6 +6,7 @@ import "../App.css";
 import Nav from "../components/Nav";
 import API from "../api/axios";
 import { useAuth } from "../context/AuthContext";
+import { BASE_URL } from "../api/axios";
 
 export default function HomePage() {
 
