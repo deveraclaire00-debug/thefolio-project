@@ -17,6 +17,13 @@ export default function HomePage() {
   // ✅ FIX: user is now defined
   const { user } = useAuth();
 
+  const getPostImageUrl = (image) => {
+    if (!image) return '';
+    if (image.startsWith('http://') || image.startsWith('https://')) return image;
+    const fileName = image.startsWith('uploads/') ? image.slice(8) : image;
+    return `${process.env.REACT_APP_BACKEND_URL}/uploads/${fileName}`;
+  };
+
   /* =============================
      LOAD SAVED THEME ON PAGE OPEN
   ============================= */
@@ -158,7 +165,7 @@ export default function HomePage() {
                   {post.image && (
                     <Link to={`/posts/${post._id}`}>
                       <img
-                        src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${post.image}`}
+                        src={getPostImageUrl(post.image)}
                         alt={post.title}
                       />
                     </Link>

@@ -9,6 +9,13 @@ const PostPage = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
 
+  const getPostImageUrl = (image) => {
+    if (!image) return '';
+    if (image.startsWith('http://') || image.startsWith('https://')) return image;
+    const fileName = image.startsWith('uploads/') ? image.slice(8) : image;
+    return `${process.env.REACT_APP_BACKEND_URL}/uploads/${fileName}`;
+  };
+
   const [post, setPost] = useState(null);
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -130,7 +137,7 @@ const PostPage = () => {
 
         {post.image && (
           <img 
-            src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${post.image}`}
+            src={getPostImageUrl(post.image)}
             alt="post" 
             style={{ width: "100%", borderRadius: "15px", margin: "15px 0" }} 
           />
