@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const { protect } = require('../middleware/auth.middleware');
 const upload = require('../middleware/upload');
+const { uploadToGridFS } = require('../utils/gridfs');
 
 const router = express.Router();
 
@@ -140,7 +141,8 @@ router.put(
          PROFILE PIC UPDATE
       ========================= */
       if (req.file) {
-        updateData.profilePic = req.file.filename;
+        const result = await uploadToGridFS(req.file);
+        updateData.profilePic = result._id.toString();
       }
 
       /* =========================

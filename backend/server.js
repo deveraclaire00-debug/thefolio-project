@@ -4,8 +4,8 @@ require('dotenv').config(); // Load .env variables FIRST
 
 const express = require('express');
 const cors = require('cors');
-const path = require('path');
 const connectDB = require('./config/db');
+const { getFileStream } = require('./utils/gridfs');
 
 // Import routes
 const authRoutes = require('./routes/auth.routes');
@@ -26,9 +26,26 @@ app.use(cors({ origin: ['http://localhost:3000', 'https://thefolio-project-clair
 // Parse incoming JSON request bodies
 app.use(express.json());
 
-// Serve uploaded image files as public URLs
-// e.g. http://localhost:5000/uploads/my-image.jpg
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+// ── Serve images stored in MongoDB Atlas GridFS ──
+app.get('/uploads/:fileId', async (req, res) => {
+  try {
+    const { fileId } = req.params;
+    const fileStream = getFileStream(fileId);
+
+    fileStream.on('file', (file) => {
+      if (file.contentType) res.set('Content-Type', file.contentType);
+      res.set('Content-Disposition', `inline; filename="${file.filename}"`);
+    });
+
+    fileStream.on('error', () => {
+      res.status(404).json({ message: 'Image not found' });
+    });
+
+    fileStream.pipe(res);
+  } catch (err) {
+    res.status(404).json({ message: 'Image not found' });
+  }
+});
 
 // ── Routes ───────────────────────────────────────────────────
 app.use('/api/auth', authRoutes);

@@ -5,6 +5,7 @@ const Post = require('../models/Post');
 const { protect } = require('../middleware/auth.middleware');
 const { memberOrAdmin } = require('../middleware/role.middleware');
 const upload = require('../middleware/upload');
+const { uploadToGridFS } = require('../utils/gridfs');
 
 const router = express.Router();
 
@@ -49,7 +50,12 @@ router.get('/:id', async (req, res) => {
 router.post('/', protect, memberOrAdmin, upload.single('image'), async (req, res) => {
   try {
     const { title, body } = req.body;
-    const image = req.file ? req.file.filename : '';
+    let image = '';
+
+    if (req.file) {
+      const result = await uploadToGridFS(req.file);
+      image = result._id.toString();
+    }
 
     const post = await Post.create({
       title,
@@ -120,7 +126,10 @@ router.put('/:id', protect, memberOrAdmin, upload.single('image'), async (req, r
 
     if (req.body.title) post.title = req.body.title;
     if (req.body.body) post.body = req.body.body;
-    if (req.file) post.image = req.file.filename;
+    if (req.file) {
+      const result = await uploadToGridFS(req.file);
+      post.image = result._id.toString();
+    }
 
     await post.save();
 
