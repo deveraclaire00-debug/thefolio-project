@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import API, { getUploadURL } from "../api/axios";
+import API from "../api/axios";
+import { BASE_URL } from "../api/axios";
 
 const EditPostPage = () => {
   const { id } = useParams();
@@ -50,7 +51,7 @@ const EditPostPage = () => {
         setBody(res.data.body);
         setPreview(
           res.data.image
-            ? getUploadURL(res.data.image)
+            ? `${process.env.REACT_APP_BACKEND_URL}/uploads/${res.data.image}`
             : ""
         );
       } catch {

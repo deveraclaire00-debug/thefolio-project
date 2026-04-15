@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import API, { getUploadURL } from "../api/axios";
+import API from "../api/axios";
+import { BASE_URL } from "../api/axios";
 
 const PostPage = () => {
   const { id } = useParams();
@@ -129,7 +130,7 @@ const PostPage = () => {
 
         {post.image && (
           <img 
-            src={getUploadURL(post.image)}
+            src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${post.image}`}
             alt="post" 
             style={{ width: "100%", borderRadius: "15px", margin: "15px 0" }} 
           />
