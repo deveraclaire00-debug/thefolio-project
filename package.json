@@ -1,10 +1,4 @@
 {
-  "name": "thefolio-project",
-  "private": true,
-  "scripts": {
-    "build": "cd frontend && npm install && npm run build",
-    "start": "cd frontend && npm start"
-  },
   "dependencies": {
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
