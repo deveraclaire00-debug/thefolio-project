@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import API from "../api/axios";
-import { BASE_URL } from "../api/axios";
+import API, { BACKEND_URL } from "../api/axios";
 
 const PostPage = () => {
   const { id } = useParams();
@@ -13,7 +12,7 @@ const PostPage = () => {
     if (!image) return '';
     if (image.startsWith('http://') || image.startsWith('https://')) return image;
     const fileName = image.startsWith('uploads/') ? image.slice(8) : image;
-    return `${process.env.REACT_APP_BACKEND_URL}/uploads/${fileName}`;
+    return `${BACKEND_URL}/uploads/${fileName}`;
   };
 
   const [post, setPost] = useState(null);

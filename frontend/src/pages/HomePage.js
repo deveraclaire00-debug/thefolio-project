@@ -4,9 +4,8 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../App.css";
 import Nav from "../components/Nav";
-import API from "../api/axios";
+import API, { BACKEND_URL } from "../api/axios";
 import { useAuth } from "../context/AuthContext";
-import { BASE_URL } from "../api/axios";
 
 export default function HomePage() {
 
@@ -21,7 +20,7 @@ export default function HomePage() {
     if (!image) return '';
     if (image.startsWith('http://') || image.startsWith('https://')) return image;
     const fileName = image.startsWith('uploads/') ? image.slice(8) : image;
-    return `${process.env.REACT_APP_BACKEND_URL}/uploads/${fileName}`;
+    return `${BACKEND_URL}/uploads/${fileName}`;
   };
 
   /* =============================
