@@ -39,7 +39,7 @@ const PostPage = () => {
         // ✅ SET LIKES
         setLikes(res.data.likes?.length || 0);
         if (user && res.data.likes) {
-          setLiked(res.data.likes.includes(user._id));
+          setLiked(res.data.likes.includes(user?._id));
         }
 
         const commentsRes = await API.get(`/comments/${id}`);
