@@ -4,9 +4,8 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../App.css";
 import Nav from "../components/Nav";
-import API from "../api/axios";
+import API, { getUploadURL } from "../api/axios";
 import { useAuth } from "../context/AuthContext";
-import { BASE_URL } from "../api/axios";
 
 export default function HomePage() {
 
@@ -158,7 +157,7 @@ export default function HomePage() {
                   {post.image && (
                     <Link to={`/posts/${post._id}`}>
                       <img
-                        src={`${process.env.REACT_APP_BACKEND_URL}/uploads/${post.image}`}
+                        src={getUploadURL(post.image)}
                         alt={post.title}
                       />
                     </Link>

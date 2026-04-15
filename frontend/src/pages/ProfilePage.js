@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
-import API from '../api/axios';
+import API, { getUploadURL } from '../api/axios';
 
 const ProfilePage = () => {
   const { user, setUser } = useAuth();
@@ -89,7 +89,7 @@ const ProfilePage = () => {
     const picSrc = preview
       ? preview
       : user?.profilePic
-      ? `${process.env.REACT_APP_BACKEND_URL}/uploads/${user.profilePic}`
+      ? getUploadURL(user.profilePic)
       : '/default-avatar.png';
 
   /* ================= STYLES (TheFolio Theme) ================= */
