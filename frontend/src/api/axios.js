@@ -5,7 +5,7 @@ export const BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/
 export const BACKEND_URL =
   process.env.REACT_APP_BACKEND_URL ||
   (process.env.REACT_APP_API_URL
-    ? process.env.REACT_APP_API_URL.replace(/\/api$/, '')
+    ? process.env.REACT_APP_API_URL.replace(/\/api\/?$/, '')
     : typeof window !== 'undefined'
     ? window.location.origin
     : 'http://localhost:5000');

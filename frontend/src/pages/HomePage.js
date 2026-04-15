@@ -19,7 +19,8 @@ export default function HomePage() {
   const getPostImageUrl = (image) => {
     if (!image) return '';
     if (image.startsWith('http://') || image.startsWith('https://')) return image;
-    const fileName = image.startsWith('uploads/') ? image.slice(8) : image;
+    const normalized = image.replace(/\\/g, '/');
+    const fileName = normalized.replace(/^\/?uploads\//, '');
     return `${BACKEND_URL}/uploads/${fileName}`;
   };
 
