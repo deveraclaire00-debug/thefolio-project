@@ -49,10 +49,10 @@ const EditPostPage = () => {
         setTitle(res.data.title);
         setBody(res.data.body);
         setPreview(
-        res.data.image
-          ? `${process.env.REACT_APP_BACKEND_URL?.replace(/\/$/, "")}/uploads/${res.data.image}`
-          : ""
-      );
+          res.data.image
+            ? `${process.env.REACT_APP_BACKEND_URL}/uploads/${res.data.image}`
+            : ""
+        );
       } catch {
         if (isMounted) setError("Failed to load post.");
       } finally {
@@ -340,7 +340,7 @@ const EditPostPage = () => {
               />
             </div>
 
-            {image && preview && (
+            {preview && (
               <div style={theme.previewBox}>
                 <img src={preview} alt="preview" style={theme.preview} />
               </div>
